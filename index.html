@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID Big Data</title>
+</head>
+<body>
+    
+
+    <!-- CODE HIER EINFÜGEN -->
+    <div id="observablehq"></div>
+    <p>Credit: <a href="https://observablehq.com/@lounjukk/flights-during-covid-19-pandemic">Flights during COVID-19 pandemic by lounjukk</a></p>
+
+    <script type="module">
+    import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+    import define from "https://api.observablehq.com/@lounjukk/flights-during-covid-19-pandemic.js?v=3";
+    new Runtime().module(define, Inspector.into("#observablehq"));
+    </script>
+
+</body>
+</html>
