@@ -9,38 +9,14 @@
     
 
 <!-- CODE HIER EINFÜGEN -->
-<div class="fullscreen"></div>
-<div class="canvas"></div>
-<div class="legend"></div>
-<div class="mainChart"></div>
-<div class="viewof-playPause"></div>
-<div class="viewof-currentProjection"></div>
-<div class="viewof-selectedRouteTypes"></div>
-<div class="viewof-flightDistance"></div>
-<div class="viewof-framesPerHour"></div>
-<div class="continentChord"></div>
-<div class="chart1"></div>
-<div class="chart2"></div>
+<div id="observablehq"></div>
 <p>Credit: <a href="https://observablehq.com/d/f57ea1e9ae854a0d">Flüge während der Covid-19 Pandemie by Florian Leberle</a></p>
 
 <script type="module">
 import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
 import define from "https://api.observablehq.com/d/f57ea1e9ae854a0d.js?v=3";
-(new Runtime).module(define, name => {
-  if (name === "fullscreen") return Inspector.into(".fullscreen")();
-  if (name === "canvas") return Inspector.into(".canvas")();
-  if (name === "legend") return Inspector.into(".legend")();
-  if (name === "mainChart") return Inspector.into(".mainChart")();
-  if (name === "viewof playPause") return Inspector.into(".viewof-playPause")();
-  if (name === "viewof currentProjection") return Inspector.into(".viewof-currentProjection")();
-  if (name === "viewof selectedRouteTypes") return Inspector.into(".viewof-selectedRouteTypes")();
-  if (name === "viewof flightDistance") return Inspector.into(".viewof-flightDistance")();
-  if (name === "viewof framesPerHour") return Inspector.into(".viewof-framesPerHour")();
-  if (name === "continentChord") return Inspector.into(".continentChord")();
-  if (name === "chart1") return Inspector.into(".chart1")();
-  if (name === "chart2") return Inspector.into(".chart2")();
-  return ["interactions","currentProjection","camera","drawPoints","routeVert","pointsVert","drawRoutes","mainSeries","dayMilliseconds","currentTime","currentDay"].includes(name) || null;
-});
+new Runtime().module(define, Inspector.into("#observablehq"));
+
 
 
 </script>
