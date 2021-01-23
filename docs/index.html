@@ -4,18 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>COVID Big Data</title>
-</head>
-<body>
-    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-<!-- CODE HIER EINFÜGEN -->
-<div id="observablehq"></div>
-<p>Credit: <a href="https://observablehq.com/d/f57ea1e9ae854a0d">Flüge während der Covid-19 Pandemie by Florian Leberle</a></p>
+
+    <style>
+
+      canvas {
+        width: 70vw !important;
+        height: auto !important;
+      }
+
+      #main-chart {
+        width: 70vw !important
+      }
+
+      div.observablehq {
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+
+    </style>
+
+  </head>
+<body>
+
+  <div class="container">
+
+    <br/>
+    <br/>
+    <br/>
+    
+    <img class="float-right img-fluid mt-5" style="max-width: 200px" src="oth-logo.png" />
+
+
+    <!-- CODE HIER EINFÜGEN -->
+    <div id="observablehq" class="mt-5"></div>
+    <hr/>
+    <p>Original: <a href="https://observablehq.com/@lounjukk/flights-during-covid-19-pandemic">Flights during COVID-19 pandemic by lounjukk</a></p>
+    <p>Credit: <a href="https://observablehq.com/d/f57ea1e9ae854a0d">Flüge während der Covid-19 Pandemie by Florian Leberle</a></p>
+
+  </div>
+
 
 <script type="module">
 import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
 import define from "https://api.observablehq.com/d/f57ea1e9ae854a0d.js?v=3";
 new Runtime().module(define, Inspector.into("#observablehq"));
+
+
+
+window.addEventListener("load", () => {
+
+  setTimeout(() => {
+
+    var aTags = document.querySelectorAll("span.observablehq--cellname");
+    var searchText = "continents = ";
+    var found;
+
+    for (var i = 0; i < aTags.length; i++) {
+      if (aTags[i].textContent == searchText) {
+        found = aTags[i];
+        break;
+      }
+    }
+
+    let next = found.parentNode.parentNode;
+
+    while(next){
+      // next.style.visibility = "hidden"; 
+      next.style.display = "none";
+      next = next.nextSibling || false;
+    }
+    
+  }, 5000);
+})
 
 
 
