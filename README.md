@@ -1,2 +1,5 @@
 # Big-Data-Projektarbeit
-Projektarbeit Einfluss Covid 19 auf den international Flugverkehr
+
+Projektarbeit im Masterstudiengang Digital Business
+Modul: Big Data, Data Analytics and Knowledge Discovery
+Einfluss der Covid 19 Pandemie auf den internationaen Flugverkehr
