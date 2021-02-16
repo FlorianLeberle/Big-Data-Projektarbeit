@@ -345,6 +345,12 @@ function move() {
 
 }
 
+setInterval(function () {
+    
+    redraw();
+}, 30000);
+
+
 var throttleTimer;
 function throttle() {
   window.clearTimeout(throttleTimer);
