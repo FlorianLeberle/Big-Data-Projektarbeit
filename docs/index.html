@@ -344,6 +344,18 @@ function move() {
 
 }
 
+var d = new Date();
+    var date = d.getDate();
+    var year = d.getFullYear();
+    var month = d.getMonth();
+    var monthArr = ["Januar", "Februar","März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November","Dezember"];
+    var seconds= d.getSeconds();
+    var minutes= d.getMinutes();
+    var hours= d.getHours();
+    month = monthArr[month];
+    document.getElementById("date").innerHTML=date+"." +month+""+year +" "+hours +":"+minutes +":"+seconds;
+
+
 // Koordinaten refreshen 
 setInterval(function () {
 
@@ -356,8 +368,8 @@ setInterval(function () {
     var minutes= d.getMinutes();
     var hours= d.getHours();
     month = monthArr[month];
-    document.getElementById("date").innerHTML=date+"."+month+"."+year +" "+hours +":"+minutes +":"+seconds;
-   
+    document.getElementById("date").innerHTML=date+"." +month+ ""+year +" "+hours +":"+minutes +":"+seconds;
+  
     redraw();
 }, 30000);
 
