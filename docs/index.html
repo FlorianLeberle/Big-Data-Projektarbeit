@@ -237,7 +237,6 @@ function setup(width,height){
 
 }
 
-document.getElementById("date").innerHTML = Date();
 
 d3.json("https://api.github.com/gists/9398333", function(error, root) {
 
@@ -347,7 +346,18 @@ function move() {
 
 // Koordinaten refreshen 
 setInterval(function () {
-    
+
+  var d = new Date();
+    var date = d.getDate();
+    var year = d.getFullYear();
+    var month = d.getMonth();
+    var monthArr = ["Januar", "Februar","März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November","Dezember"];
+    var seconds= d.getSeconds();
+    var minutes= d.getMinutes();
+    var hours= d.getHours();
+    month = monthArr[month];
+    document.getElementById("date").innerHTML=date+"."+month+"."+year +" "+hours +":"+minutes +":"+seconds;
+   
     redraw();
 }, 30000);
 
