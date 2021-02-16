@@ -97,7 +97,7 @@ h4 {
   border-radius: 2px;
   height:100%;
   overflow:hidden;
-  background: #575e70;
+  background: #0a141e;
 }
 .hidden { 
   display: none; 
@@ -271,7 +271,7 @@ function draw(topo) {
   .attr("d", path)
   .attr("id", function(d,i) { return d.id; })
   .attr("title", function(d,i) { return d.properties.name; })
-  .style("fill", function(d, i) { return "#49cc90";return d.properties.color; });
+  .style("fill", function(d, i) { return "#005014";return d.properties.color; });
 
   //offsets for tooltips
   var offsetL = document.getElementById('container').offsetLeft+20;
@@ -345,12 +345,13 @@ function move() {
 
 }
 
+// Koordinaten refreshen 
 setInterval(function () {
     
     redraw();
 }, 30000);
 
-
+// Wenn man das Fenster resized, laden die Punkte auf die richtige größe
 var throttleTimer;
 function throttle() {
   window.clearTimeout(throttleTimer);
