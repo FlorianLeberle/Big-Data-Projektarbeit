@@ -296,9 +296,9 @@ function draw(topo) {
     for(var i = 0; i < data.states.length; i++)
       {
         if(data.states[i]["8"] === true){
-          addpoint(data.states[i]["5"], data.states[i]["6"],"#000");
+          addpoint(data.states[i]["5"], data.states[i]["6"],"#000"); // Punkte schwarz
         }else{
-          addpoint(data.states[i]["5"], data.states[i]["6"],"#fff");
+          addpoint(data.states[i]["5"], data.states[i]["6"],"#fff"); // Punkte weiß
         }
         
       }
@@ -344,6 +344,7 @@ function move() {
 
 }
 
+// Zeitstempel setzen
 var d = new Date();
     var date = d.getDate();
     var year = d.getFullYear();
@@ -353,10 +354,10 @@ var d = new Date();
     var minutes= d.getMinutes();
     var hours= d.getHours();
     month = monthArr[month];
-    document.getElementById("date").innerHTML=date+"." +month+""+year +" "+hours +":"+minutes +":"+seconds;
+    document.getElementById("date").innerHTML=date+". " +month+" "+year +" "+hours +":"+minutes +":"+seconds;
 
 
-// Koordinaten refreshen 
+// Koordinaten und Zeitstempel refreshen 
 setInterval(function () {
 
   var d = new Date();
@@ -368,7 +369,7 @@ setInterval(function () {
     var minutes= d.getMinutes();
     var hours= d.getHours();
     month = monthArr[month];
-    document.getElementById("date").innerHTML=date+"." +month+ ""+year +" "+hours +":"+minutes +":"+seconds;
+    document.getElementById("date").innerHTML=date+". " +month+ " "+year +" "+hours +":"+minutes +":"+seconds;
   
     redraw();
 }, 30000);
