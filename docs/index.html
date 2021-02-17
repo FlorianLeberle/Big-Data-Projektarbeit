@@ -149,7 +149,7 @@ div.tooltip {
 
     <br>
 
-    <p><font size="+1"> Weiße Punkte zeigen die Flugzeuge die gerade in der Luft sind <br> Schwarze Punkte zeigen die Flugzeuge am Boden</font></p>
+    <p><font size="+1"> <bgcolor="#eba134"> Orange Punkte zeigen die Flugzeuge, die gerade in der Luft sind <br> Rote Punkte zeigen die Flugzeuge die gerade starten oder landen</font></p></bgcolor>
     
     
     <hr>
@@ -296,9 +296,9 @@ function draw(topo) {
     for(var i = 0; i < data.states.length; i++)
       {
         if(data.states[i]["8"] === true){
-          addpoint(data.states[i]["5"], data.states[i]["6"],"#c21515"); // Punkte schwarz
+          addpoint(data.states[i]["5"], data.states[i]["6"],"#c21515"); // Punkte rot
         }else{
-          addpoint(data.states[i]["5"], data.states[i]["6"],"#eba134"); // Punkte weiß
+          addpoint(data.states[i]["5"], data.states[i]["6"],"#eba134"); // Punkte orange
         }
         
       }
