@@ -370,9 +370,8 @@ setInterval(function () {
     var hours= d.getHours();
     month = monthArr[month];
     document.getElementById("date").innerHTML=date+". " +month+ " "+year +" "+hours +":"+minutes +":"+seconds;
-  
-    redraw();
-}, 30000);
+
+}, 3000);
 
 // Wenn man das Fenster resized, laden die Punkte auf die richtige größe
 var throttleTimer;
