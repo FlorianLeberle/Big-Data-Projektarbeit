@@ -149,7 +149,8 @@ div.tooltip {
 
     <br>
 
-    <p><font size="+1" color=#eba134> Orange Punkte zeigen die Flugzeuge, die gerade in der Luft sind <br> Rote Punkte zeigen die Flugzeuge die gerade starten oder landen</font></p>
+    <p><font size="+1" color=#eba134> Orange Punkte zeigen die Flugzeuge, die gerade in der Luft sind</font></p>
+    <p><font size="+1" color=#c21515> Rote Punkte zeigen die Flugzeuge die gerade starten oder landen</font></p>
     
     
     <hr>
@@ -371,7 +372,7 @@ setInterval(function () {
     month = monthArr[month];
     document.getElementById("date").innerHTML=date+". " +month+ " "+year +" "+hours +":"+minutes +":"+seconds;
 
-}, 3000);
+}, 10000);
 
 // Wenn man das Fenster resized, laden die Punkte auf die richtige größe
 var throttleTimer;
