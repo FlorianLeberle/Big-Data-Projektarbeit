@@ -8,6 +8,15 @@
  
  
     <style>
+
+      .full-width-container {
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+      }
  
       canvas {
         height: auto !important;
@@ -123,19 +132,26 @@ div.tooltip {
   stroke-width: 1px;
 }
 
+
+
     </style>
  
   </head>
 <body>
  
-  <div class="container">
+  <div id="main-page-wrapper" class="container">
  
     <br/>
     <br/>
     
     <img class="float-right img-fluid mt-5" style="max-width: 200px" src="OTH_Logo.png" />
 
-    <div id="observablehq-5c95bd42" class="mt-5"></div>
+    <div id="observablehq-5c95bd42" class="mt-5" style="display: none"></div>
+
+    <div id="loader">
+      <h3>Loading</h3>
+      <img src="tail-spin.svg" alt="Loading Spinner">
+    </div>
     
     <hr>
       <br>
@@ -144,7 +160,7 @@ div.tooltip {
     <p id="date"> </p>
     <br>
     <h4> <span class="city"></span></h4>
-    <div id="container"></div>
+    <div id="container" class="svg-map-container"></div>
 
     <br>
 
@@ -172,7 +188,68 @@ import define from "https://api.observablehq.com/d/f57ea1e9ae854a0d.js?v=3";
 new Runtime().module(define, Inspector.into("#observablehq-5c95bd42"));
 
 
+// Loader
+let observable_content = document.querySelector('#observablehq-5c95bd42')
+let loader_element = document.querySelector('#loader')
+
 window.addEventListener("load", () => {
+
+  // page is loaded - hide loader and show content
+  observable_content.style.display = "block";
+  loader_element.style.display = "none";
+
+  
+  let main_chart_fixed = false;
+  let hel_chart_fixed = false;
+  let euro_chart_fixed = false;
+
+  // fix chart width bug
+  let setStyleInterval = setInterval(() => {
+
+    let main_chart_slider_child = document.querySelector('#main-chart.svelte-1pqttjo')
+    let hel_chart_slider_child = document.querySelector('#hel-chart.svelte-1pqttjo')
+    let euro_chart_slider_child = document.querySelector('#euro-chart.svelte-1pqttjo')
+    
+    if(
+      !main_chart_fixed && 
+      main_chart_slider_child && 
+      main_chart_slider_child.parentNode && 
+      main_chart_slider_child.parentNode.parentNode
+      ){ 
+      main_chart_slider_child.parentNode.parentNode.classList.add('full-width-container')
+      main_chart_fixed = true;
+      console.log('Main chart fixed')
+    }
+
+    if(
+      !hel_chart_fixed && 
+      hel_chart_slider_child && 
+      hel_chart_slider_child.parentNode && 
+      hel_chart_slider_child.parentNode.parentNode
+      ){ 
+      hel_chart_slider_child.parentNode.parentNode.classList.add('full-width-container')
+      hel_chart_fixed = true;
+      console.log('HEL chart fixed')
+    }
+
+    if(
+      !euro_chart_fixed && 
+      euro_chart_slider_child && 
+      euro_chart_slider_child.parentNode && 
+      euro_chart_slider_child.parentNode.parentNode
+      ){ 
+      euro_chart_slider_child.parentNode.parentNode.classList.add('full-width-container')
+      euro_chart_fixed = true;
+      console.log('Euro chart fixed')
+    }
+
+
+    if(main_chart_fixed && hel_chart_fixed && euro_chart_fixed){
+      clearInterval(setStyleInterval);
+      console.log('All charts fixed')
+    }
+    
+  }, 100);
  
   setTimeout(() => {
  
@@ -286,8 +363,11 @@ function draw(topo) {
   .on("mouseout",  function(d,i) {
     tooltip.classed("hidden", true);
   }); 
-  d3.json( "https://opensky-network.org/api/states/all",
-        function(data){
+  d3.json( "https://opensky-network.org/api/states/all", function(data){
+    if(!data){
+      console.error('Could not load API data')
+      return;
+    }
     console.log(data.states[0]["5"])
     for(var i = 0; i < data.states.length; i++)
       {
@@ -308,7 +388,9 @@ function draw(topo) {
 function redraw() {
   width = document.getElementById('container').offsetWidth;
   height = width / 2;
-  d3.select('svg').remove();
+  
+  document.querySelector('.svg-map-container > svg').remove();
+
   setup(width,height);
   draw(topo);
 }
@@ -318,7 +400,7 @@ function move() {
 
   var t = d3.event.translate;
   var s = d3.event.scale; 
-  zscale = s;
+  var zscale = s;
   var h = height/4;
 
 
