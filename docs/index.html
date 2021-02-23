@@ -451,7 +451,7 @@ setInterval(function () {
 
 }, 10000);
 
-// Wenn man das Fenster resized, laden die Punkte auf die richtige größe
+// throttleTimer for resized
 var throttleTimer;
 function throttle() {
   window.clearTimeout(throttleTimer);
